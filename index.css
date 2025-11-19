@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;600;700&display=swap');
+
+@theme {
+    --font-sans: 'Inter', sans-serif;
+    --font-serif: 'Playfair Display', serif;
+
+    --color-luxury-gold: #D4AF37;
+    --color-luxury-gold-light: #F3E5AB;
+    --color-luxury-black: #1A1A1A;
+    --color-luxury-cream: #FDFBF7;
+    --color-luxury-blue: #0F172A;
+
+    --color-brand-blue: #0F172A;
+    /* Re-mapping to luxury blue */
+    --color-brand-blue-dark: #020617;
+    --color-brand-green: #10B981;
+    /* Keeping green for success/whatsapp */
+    --color-brand-green-dark: #059669;
+}
+
+body {
+    font-family: var(--font-sans);
+    background-color: var(--color-luxury-cream);
+    color: var(--color-luxury-black);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-serif);
+}
+
+.btn-luxury {
+    @apply px-6 py-3 bg-luxury-blue text-white font-medium rounded-lg shadow-md hover:bg-luxury-gold hover:text-luxury-black transition-all duration-300 transform hover:-translate-y-0.5;
+}
+
+.card-luxury {
+    @apply bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 border border-gray-100;
+}
