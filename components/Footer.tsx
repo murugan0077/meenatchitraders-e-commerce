@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
                 <li>
                   <button
                     onClick={() => openPopup('Frequently Asked Questions', commonData)}
-                    className="text-base text-gray-400 hover:text-white transition-colors text-left"
+                    className="text-base text-gray-400 hover:text-white transition-colors text-left cursor-pointer"
                   >
                     FAQs
                   </button>
@@ -74,7 +74,7 @@ const Footer: React.FC = () => {
                 <li>
                   <button
                     onClick={() => openPopup('Privacy Policy', commonData)}
-                    className="text-base text-gray-400 hover:text-white transition-colors text-left"
+                    className="text-base text-gray-400 hover:text-white transition-colors text-left cursor-pointer "
                   >
                     Privacy Policy
                   </button>
@@ -82,7 +82,7 @@ const Footer: React.FC = () => {
                 <li>
                   <button
                     onClick={() => openPopup('Terms of Service', commonData)}
-                    className="text-base text-gray-400 hover:text-white transition-colors text-left"
+                    className="text-base text-gray-400 hover:text-white transition-colors text-left cursor-pointer"
                   >
                     Terms of Service
                   </button>
