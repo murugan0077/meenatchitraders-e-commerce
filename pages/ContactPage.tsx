@@ -1,5 +1,6 @@
 
 import React, { useState } from 'react';
+import { WHATSAPP_NUMBER } from '../constants';
 
 const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -92,15 +93,15 @@ const ContactPage: React.FC = () => {
           <div className="space-y-6 text-gray-700">
             <h3 className="text-xl font-bold text-gray-900 border-b pb-2">Contact Information</h3>
             <p>
-              <strong>Address:</strong><br/>
+              <strong>Address:</strong><br />
               123, Main Bazaar Street, Chennai, Tamil Nadu, 600001
             </p>
             <p>
-              <strong>Phone:</strong><br/>
-              +91 98765 43210
+              <strong>Phone:</strong><br />
+              +{WHATSAPP_NUMBER}
             </p>
             <p>
-              <strong>Email:</strong><br/>
+              <strong>Email:</strong><br />
               contact@meenatchitraders.com
             </p>
           </div>

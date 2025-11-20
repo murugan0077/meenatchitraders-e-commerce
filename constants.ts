@@ -1,7 +1,7 @@
 
 import { Product } from './types';
 
-export const WHATSAPP_NUMBER = "919876543210"; // Replace with actual WhatsApp number
+export const WHATSAPP_NUMBER = "919489533406"; // Replace with actual WhatsApp number
 export const COMPANY_NAME = "MeenatchiTraders";
 
 export const PRODUCT_SUGGESTIONS = [
