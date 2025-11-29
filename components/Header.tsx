@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 
+
 const ShoppingBagIcon: React.FC<{ className?: string }> = ({ className }) => (
   <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
@@ -28,11 +29,11 @@ const Header: React.FC = () => {
   const totalItems = state.items.reduce((sum, item) => sum + item.quantity, 0);
 
   const navLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `py-2 px-3 rounded-md text-sm font-medium transition-colors ${isActive ? 'bg-green-100 text-brand-green' : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+    `py-2 px-3 rounded-md text-sm font-medium transition-colors ${isActive ? 'bg-luxury-gold/10 text-luxury-gold' : 'text-luxury-black/70 hover:bg-luxury-gold/5 hover:text-luxury-gold'
     }`;
 
   const mobileNavLinkClass = ({ isActive }: { isActive: boolean }) =>
-    `block py-2 px-4 text-base font-medium transition-colors ${isActive ? 'bg-green-100 text-brand-green' : 'text-gray-600 hover:bg-gray-100'
+    `block py-2 px-4 text-base font-medium transition-colors ${isActive ? 'bg-luxury-gold/10 text-luxury-gold' : 'text-luxury-black/70 hover:bg-luxury-gold/5 hover:text-luxury-gold'
     }`;
 
   const navLinks = (
@@ -41,6 +42,7 @@ const Header: React.FC = () => {
       <NavLink to="/products" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>Products</NavLink>
       <NavLink to="/about" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>About</NavLink>
       <NavLink to="/contact" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
+      <NavLink to="/track-order" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>Track Order</NavLink>
       <NavLink to="/admin" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>Admin</NavLink>
     </>
   );
@@ -50,9 +52,9 @@ const Header: React.FC = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
-            <NavLink to="/" className="text-2xl font-bold text-brand-green flex items-center gap-2">
-              <img src="/logo.svg" alt="MeenatchiTraders Logo" className="h-10 w-10" />
-              MeenatchiTraders
+            <NavLink to="/" className="text-2xl font-serif font-bold text-luxury-gold flex items-center gap-2">
+              <img src="/logo.png" alt="MeenatchiTraders" className="h-12 w-auto" />
+              <span className="text-luxury-black">Meenatchi</span><span className="text-luxury-gold">Traders</span>
             </NavLink>
           </div>
           <div className="hidden md:block">
@@ -87,6 +89,7 @@ const Header: React.FC = () => {
             <NavLink to="/products" className={mobileNavLinkClass} onClick={() => setIsMenuOpen(false)}>Products</NavLink>
             <NavLink to="/about" className={mobileNavLinkClass} onClick={() => setIsMenuOpen(false)}>About</NavLink>
             <NavLink to="/contact" className={mobileNavLinkClass} onClick={() => setIsMenuOpen(false)}>Contact</NavLink>
+            <NavLink to="/track-order" className={mobileNavLinkClass} onClick={() => setIsMenuOpen(false)}>Track Order</NavLink>
             <NavLink to="/admin" className={mobileNavLinkClass} onClick={() => setIsMenuOpen(false)}>Admin</NavLink>
           </div>
         </div>

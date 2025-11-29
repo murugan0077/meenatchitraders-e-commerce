@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Product } from '../types';
-import { productService } from './AdminPage';
+import { productService } from '../services/productService';
 import { useCart } from '../context/CartContext';
 import { WHATSAPP_NUMBER, COMPANY_NAME } from '../constants';
 
@@ -27,7 +27,7 @@ const ProductDetailsPage: React.FC = () => {
         if (product) {
             dispatch({ type: 'ADD_ITEM', payload: product });
             // Optional: Show a toast or notification
-            alert('Added to cart!');
+            // alert('Added to cart!');
         }
     };
 
