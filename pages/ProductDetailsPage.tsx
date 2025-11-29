@@ -53,7 +53,7 @@ const ProductDetailsPage: React.FC = () => {
             </div>
         );
     }
-
+console.log('product.imageUrl:', product.imageUrl);
     return (
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
             <button
@@ -68,9 +68,12 @@ const ProductDetailsPage: React.FC = () => {
                     {/* Image Section */}
                     <div className="h-96 md:h-auto relative bg-gray-50 flex items-center justify-center p-8">
                         <img
-                            src={product.imageUrl}
+                            src={(product.imageUrl?.replace(/^public\//, '/') || '/placeholder.png')}
                             alt={product.name}
                             className="max-h-full max-w-full object-contain drop-shadow-xl transform hover:scale-105 transition-transform duration-500"
+                            onError={e => {
+                                (e.currentTarget as HTMLImageElement).src = '/placeholder.png';
+                            }}
                         />
                     </div>
 

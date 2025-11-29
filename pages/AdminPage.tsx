@@ -318,7 +318,7 @@ const AdminDashboard: React.FC<{ onLogout: () => void }> = ({ onLogout }) => {
       console.log("Product saved successfully. Reloading...");
       await loadProducts();
       closeModal();
-      alert("Product saved successfully!");
+      // alert("Product saved successfully!");
     } catch (error) {
       console.error("Error saving product:", error);
       alert(`Failed to save product: ${error instanceof Error ? error.message : 'Unknown error'}`);
