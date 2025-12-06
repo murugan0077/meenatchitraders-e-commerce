@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         <div className="flex items-center justify-between h-16">
           <div className="flex-shrink-0">
             <NavLink to="/" className="text-2xl font-serif font-bold text-luxury-gold flex items-center gap-2">
-              <img src="/logo.png" alt="MeenatchiTraders" className="h-12 w-auto" />
+              <img src="/new_logo-removebg-preview.png" alt="MeenatchiTraders" className="h-12 w-auto" />
               <span className="text-luxury-black">Meenatchi</span><span className="text-luxury-gold">Traders</span>
             </NavLink>
           </div>
