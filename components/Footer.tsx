@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import InfoPopup from './InfoPopup';
 
 const Footer: React.FC = () => {
@@ -49,15 +50,15 @@ const Footer: React.FC = () => {
             <div>
               <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Quick Links</h3>
               <ul className="mt-4 space-y-2">
-                <li><a href="#/" className="text-base text-gray-400 hover:text-white transition-colors">Home</a></li>
-                <li><a href="#/products" className="text-base text-gray-400 hover:text-white transition-colors">Products</a></li>
-                <li><a href="#/about" className="text-base text-gray-400 hover:text-white transition-colors">About Us</a></li>
+                <li><Link to="/" className="text-base text-gray-400 hover:text-white transition-colors">Home</Link></li>
+                <li><Link to="/products" className="text-base text-gray-400 hover:text-white transition-colors">Products</Link></li>
+                <li><Link to="/about" className="text-base text-gray-400 hover:text-white transition-colors">About Us</Link></li>
               </ul>
             </div>
             <div>
               <h3 className="text-sm font-semibold text-gray-300 tracking-wider uppercase">Support</h3>
               <ul className="mt-4 space-y-2">
-                <li><a href="#/contact" className="text-base text-gray-400 hover:text-white transition-colors">Contact Us</a></li>
+                <li><Link to="/contact" className="text-base text-gray-400 hover:text-white transition-colors">Contact Us</Link></li>
                 <li>
                   <button
                     onClick={() => openPopup('Frequently Asked Questions', commonData)}

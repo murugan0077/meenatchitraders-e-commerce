@@ -39,15 +39,31 @@ const AdminProductForm: React.FC<AdminProductFormProps> = ({ product, onSave, on
     if (!file) return;
 
     setIsUploading(true);
+
+    const formData = new FormData();
+    formData.append('image', file);
+
     try {
-      const storageRef = ref(storage, `products/${Date.now()}_${file.name}`);
-      await uploadBytes(storageRef, file);
-      const url = await getDownloadURL(storageRef);
-      setFormData(prev => ({ ...prev, imageUrl: url }));
-      alert("Image uploaded successfully!");
+      // Try to upload to local server
+      const response = await fetch('http://localhost:3001/upload', {
+        method: 'POST',
+        body: formData,
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Local upload successful:", data.path);
+        setFormData(prev => ({ ...prev, imageUrl: data.path }));
+        // alert("Image uploaded locally!");
+      } else {
+        throw new Error('Local upload failed');
+      }
     } catch (error) {
-      console.error("Error uploading image:", error);
-      alert("Failed to upload image. Check console for details.");
+      console.warn("Local upload server not reachable, falling back to manual path setting.", error);
+      // Fallback: Just set the path and warn the user
+      const localPath = `/products/${file.name}`;
+      setFormData(prev => ({ ...prev, imageUrl: localPath }));
+      alert(`Could not upload file automatically (Server not running?).\n\nPath set to: ${localPath}\n\nPlease ensure the file is manually placed in 'public/products/'.`);
     } finally {
       setIsUploading(false);
     }
@@ -88,7 +104,7 @@ const AdminProductForm: React.FC<AdminProductFormProps> = ({ product, onSave, on
             disabled={isUploading}
             className="block w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-blue file:text-white hover:file:bg-brand-blue-dark"
           />
-          {isUploading && <span className="text-sm text-gray-500">Uploading...</span>}
+
         </div>
         <div className="mt-2">
           <label className="block text-xs text-gray-500">Or paste URL directly:</label>
@@ -97,9 +113,20 @@ const AdminProductForm: React.FC<AdminProductFormProps> = ({ product, onSave, on
         {formData.imageUrl && (
           <div className="mt-2">
             <p className="text-xs text-gray-500 mb-1">Preview:</p>
-            <img src={formData.imageUrl} alt="Preview" className="h-20 w-20 object-cover rounded-md border" />
+            <img
+              src={formData.imageUrl}
+              alt="Preview"
+              className="h-20 w-20 object-cover rounded-md border"
+              onError={(e) => {
+                e.currentTarget.style.display = 'none';
+                e.currentTarget.parentElement?.insertAdjacentHTML('beforeend', '<span class="text-xs text-red-500">Image not found.<br/>Ensure file is in <b>public/products/</b> folder.</span>');
+              }}
+            />
           </div>
         )}
+        <p className="text-xs text-gray-400 mt-1">
+          * For local images, place files in <code>public/products/</code> folder.
+        </p>
       </div>
       <div className="flex justify-end space-x-2 pt-4">
         <button type="button" onClick={onCancel} disabled={isSaving || isUploading} className="px-4 py-2 bg-gray-200 text-gray-800 rounded-md hover:bg-gray-300 disabled:opacity-50">Cancel</button>
